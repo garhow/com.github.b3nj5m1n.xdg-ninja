@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=xdg-ninja
+Comment=A shell script which checks your $HOME for unwanted files and directories.
+TryExec=xdg-ninja-gui
+Exec=xdg-ninja-gui
+Type=Application
+Categories=Utility;ConsoleOnly
+Terminal=true

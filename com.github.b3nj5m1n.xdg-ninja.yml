@@ -1,0 +1,76 @@
+app-id: com.github.b3nj5m1n.xdg-ninja
+
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.golang # Required for building glow
+
+command: xdg-ninja
+
+finish-args:
+  # Home directory read-only access
+  - --filesystem=home:ro
+
+modules:
+  # xdg-ninja
+  - name: xdg-ninja
+    buildsystem: simple
+    build-commands:
+      # xdg-ninja
+      - install -Dm644 -t /app/share/xdg-ninja/lib lib/*
+      - install -Dm644 -t /app/share/xdg-ninja/programs programs/*
+      - install xdg-ninja.sh /app/share/xdg-ninja
+      - mkdir /app/bin
+      - ln -s /app/share/xdg-ninja/xdg-ninja.sh /app/bin/xdg-ninja
+      # xdg-ninja-gui (used in the desktop entry for graphical terminal emulators)
+      - install -D /app/share/xdg-ninja/xdg-ninja.sh /app/share/xdg-ninja/xdg-ninja-gui.sh
+      - echo read >> /app/share/xdg-ninja/xdg-ninja-gui.sh
+      - ln -s /app/share/xdg-ninja/xdg-ninja-gui.sh /app/bin/xdg-ninja-gui
+      # AppStream metainfo
+      - install -Dm644 -t /app/share/metainfo com.github.b3nj5m1n.xdg-ninja.appdata.xml
+      # Desktop entry
+      - install -Dm644 -t /app/share/applications com.github.b3nj5m1n.xdg-ninja.desktop
+    sources:
+      # xdg-ninja
+      - type: git
+        url: https://github.com/b3nj5m1n/xdg-ninja.git
+        tag: v0.2.0.1
+      # AppStream metainfo
+      - type: file
+        path: com.github.b3nj5m1n.xdg-ninja.appdata.xml
+      # Desktop entry
+      - type: file
+        path: com.github.b3nj5m1n.xdg-ninja.desktop
+
+  # Glow
+  - name: glow
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/golang/bin
+      env:
+        GOBIN: /app/bin
+      build-args:
+        - --share=network
+    build-commands:
+      - go build
+      - install -D -t /app/bin glow
+    sources:
+      - type: git
+        url: https://github.com/charmbracelet/glow.git
+        branch: master
+
+  # jq
+  - name: jq
+    buildsystem: simple
+    build-commands:
+      - git submodule update --init
+      - autoreconf -fi
+      - ./configure --with-oniguruma=builtin
+      - make
+      - install jq /app/bin/jq
+    sources:
+      - type: git
+        url: https://github.com/stedolan/jq.git
+        branch: master

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>com.github.b3nj5m1n.xdg-ninja</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>MIT</project_license>
+	<name>xdg-ninja</name>
+	<developer_name>b3nj5m1n</developer_name>
+	<summary>A shell script which checks your $HOME for unwanted files and directories.</summary>
+	<launchable type="desktop-id">com.github.b3nj5m1n.xdg-ninja.desktop</launchable>
+	<url type="homepage">https://github.com/b3nj5m1n/xdg-ninja</url>
+	<url type="bugtracker">https://github.com/b3nj5m1n/xdg-ninja/issues</url>
+	<description>
+		<p>When it encounters a file it knows about, it will tell you whether it's possible to move this file to an appropriate location, and how to do it.</p>
+		<p>The configurations are from the Arch Wiki page on XDG_BASE_DIR, antidot (thanks to Scr0nch for writing a conversion tool), and contributed by other users.</p>
+	</description>
+	<categories>
+		<category>Utility</category>
+		<category>ConsoleOnly</category>
+	</categories>
+	<keywords>
+		<keyword>linux</keyword>
+		<keyword>shell</keyword>
+		<keyword>terminal</keyword>
+		<keyword>xdg</keyword>
+		<keyword>xdg-basedir</keyword>
+		<keyword>xdg-compliance</keyword>
+	</keywords>
+	<releases>
+		<release version="0.2.0.1" date="2022-06-28" description="Fix dirname invocation." url="https://github.com/b3nj5m1n/xdg-ninja/releases/tag/v0.2.0.1"/>
+	</releases>
+	<update_contact>garrett_AT_mersh.com</update_contact>
+</component>
