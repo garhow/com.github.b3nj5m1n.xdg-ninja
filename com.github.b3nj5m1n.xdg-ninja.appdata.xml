@@ -25,8 +25,14 @@
 		<keyword>xdg-basedir</keyword>
 		<keyword>xdg-compliance</keyword>
 	</keywords>
+	<screenshots>
+		<screenshot type="default">
+			<image type="source">https://github.com/garrhow/com.github.b3nj5m1n.xdg-ninja/raw/main/screenshots/1.png</image>
+		</screenshot>
+	</screenshots>
 	<releases>
 		<release version="0.2.0.1" date="2022-06-28" description="Fix dirname invocation." url="https://github.com/b3nj5m1n/xdg-ninja/releases/tag/v0.2.0.1"/>
 	</releases>
+	<content_rating type="oars-1.0" />
 	<update_contact>garrett_AT_mersh.com</update_contact>
 </component>
